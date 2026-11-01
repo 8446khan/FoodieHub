@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap');
+@import "tailwindcss";
+
+:root {
+  font-family: "DM Sans", sans-serif;
+  color: #f8fafc;
+  background: #080d0f;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; min-width: 320px; background: #080d0f; }
+button, input, textarea, select { font: inherit; }
+button, a { -webkit-tap-highlight-color: transparent; }
+a { text-decoration: none; }
+.font-display { font-family: "Playfair Display", serif; }
+.container { width: min(1120px, calc(100% - 40px)); margin-inline: auto; }
+.panel { background: #101719; border: 1px solid rgba(255,255,255,.08); }
+.gold-btn { display: inline-flex; align-items: center; justify-content: center; gap: .5rem; border-radius: .5rem; padding: .75rem 1rem; background: #ffd65a; color: #17140a; font-weight: 700; font-size: .875rem; transition: .2s ease; cursor: pointer; }
+.gold-btn:hover { background: #ffe58c; transform: translateY(-1px); }
+.outline-btn { display: inline-flex; align-items: center; justify-content: center; gap: .5rem; border: 1px solid rgba(255,214,90,.55); color: #ffd65a; border-radius: .5rem; padding: .7rem 1rem; font-size: .875rem; font-weight: 600; transition: .2s ease; cursor: pointer; }
+.outline-btn:hover { background: rgba(255,214,90,.08); }
+.eyebrow { color: #ffd65a; font-size: .7rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; }
+.section-title { color: white; font-family: "Playfair Display", serif; font-weight: 700; line-height: 1.12; }
+.muted { color: #a1a1aa; }
+.food-image-wrap { overflow: hidden; background: #182124; }
+.food-image { display: block; transition: transform .35s ease; }
+.food-image-wrap:hover .food-image { transform: scale(1.04); }
+.input-dark { width: 100%; border: 1px solid rgba(255,255,255,.12); background: #0b1113; color: white; border-radius: .5rem; padding: .75rem .9rem; outline: none; }
+.input-dark:focus { border-color: #ffd65a; }
+::selection { background: #ffd65a; color: #080d0f; }
