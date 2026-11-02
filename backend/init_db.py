@@ -62,17 +62,207 @@ sample_products = [
         "time": "5 min",
         "tag": "Refreshing",
     },
+    {
+        "name": "Farmhouse Pizza",
+        "description": "Loaded with fresh capsicum, onion, tomato, and mozzarella cheese.",
+        "price": 349,
+        "category": "Pizza",
+        "image": "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=600",
+        "rating": 4.7,
+        "time": "25 min",
+        "tag": "Bestseller",
+    },
+    {
+        "name": "Pepperoni Pizza",
+        "description": "Delicious pizza topped with pepperoni slices and melted cheese.",
+        "price": 399,
+        "category": "Pizza",
+        "image": "https://images.unsplash.com/photo-1628840042765-356cda07504e?w=600",
+        "rating": 4.9,
+        "time": "25 min",
+        "tag": "Popular",
+    },
+    {
+        "name": "BBQ Chicken Burger",
+        "description": "Juicy grilled chicken patty with smoky BBQ sauce and lettuce.",
+        "price": 249,
+        "category": "Burger",
+        "image": "https://images.unsplash.com/photo-1550547660-d9450f859349?w=600",
+        "rating": 4.8,
+        "time": "20 min",
+        "tag": "Chef's choice",
+    },
+    {
+        "name": "Double Cheese Burger",
+        "description": "Double juicy patties layered with cheddar cheese and fresh veggies.",
+        "price": 299,
+        "category": "Burger",
+        "image": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600",
+        "rating": 4.9,
+        "time": "20 min",
+        "tag": "Bestseller",
+    },
+    {
+        "name": "Spicy Arrabbiata Pasta",
+        "description": "Italian pasta tossed in a spicy tomato sauce with herbs.",
+        "price": 229,
+        "category": "Pasta",
+        "image": "https://images.unsplash.com/photo-1551183053-bf91a1d81141?w=600",
+        "rating": 4.6,
+        "time": "20 min",
+        "tag": "Spicy",
+    },
+    {
+        "name": "Pesto Pasta",
+        "description": "Fresh basil pesto pasta with parmesan and roasted vegetables.",
+        "price": 279,
+        "category": "Pasta",
+        "image": "https://images.unsplash.com/photo-1473093295043-cdd812d0e601?w=600",
+        "rating": 4.7,
+        "time": "20 min",
+        "tag": "Chef's choice",
+    },
+    {
+        "name": "Garlic Bread",
+        "description": "Toasted bread infused with garlic butter and Italian herbs.",
+        "price": 119,
+        "category": "Sides",
+        "image": "https://images.unsplash.com/photo-1573140247632-f8fd74997d5c?w=600",
+        "rating": 4.5,
+        "time": "10 min",
+        "tag": "Popular",
+    },
+    {
+        "name": "Cheese Garlic Bread",
+        "description": "Crispy garlic bread topped with melted mozzarella cheese.",
+        "price": 159,
+        "category": "Sides",
+        "image": "https://images.unsplash.com/photo-1619531040576-f9416740661f?w=600",
+        "rating": 4.8,
+        "time": "12 min",
+        "tag": "Bestseller",
+    },
+    {
+        "name": "Peri Peri Fries",
+        "description": "Crispy golden fries tossed in flavorful peri peri seasoning.",
+        "price": 129,
+        "category": "Sides",
+        "image": "https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=600",
+        "rating": 4.7,
+        "time": "12 min",
+        "tag": "Spicy",
+    },
+    {
+        "name": "Chicken Nuggets",
+        "description": "Crunchy golden chicken nuggets served with a dipping sauce.",
+        "price": 199,
+        "category": "Sides",
+        "image": "https://images.unsplash.com/photo-1562967914-608f82629710?w=600",
+        "rating": 4.6,
+        "time": "15 min",
+        "tag": "Popular",
+    },
+    {
+        "name": "Red Velvet Cake",
+        "description": "Soft red velvet sponge layered with creamy frosting.",
+        "price": 179,
+        "category": "Dessert",
+        "image": "https://images.unsplash.com/photo-1586788680434-30d324b2d46f?w=600",
+        "rating": 4.9,
+        "time": "10 min",
+        "tag": "Sweet treat",
+    },
+    {
+        "name": "Chocolate Lava Cake",
+        "description": "Warm chocolate cake with a rich molten chocolate center.",
+        "price": 199,
+        "category": "Dessert",
+        "image": "https://images.unsplash.com/photo-1624353365286-3f8d62daad51?w=600",
+        "rating": 5.0,
+        "time": "12 min",
+        "tag": "Bestseller",
+    },
+    {
+        "name": "Vanilla Ice Cream",
+        "description": "Smooth and creamy vanilla ice cream made with rich milk.",
+        "price": 89,
+        "category": "Dessert",
+        "image": "https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=600",
+        "rating": 4.5,
+        "time": "5 min",
+        "tag": "Sweet treat",
+    },
+    {
+        "name": "Oreo Milkshake",
+        "description": "Creamy milkshake blended with Oreo cookies and vanilla ice cream.",
+        "price": 159,
+        "category": "Drinks",
+        "image": "https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=600",
+        "rating": 4.8,
+        "time": "8 min",
+        "tag": "Bestseller",
+    },
+    {
+        "name": "Cold Coffee",
+        "description": "Chilled coffee blended with milk and creamy ice cream.",
+        "price": 139,
+        "category": "Drinks",
+        "image": "https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=600",
+        "rating": 4.7,
+        "time": "8 min",
+        "tag": "Refreshing",
+    },
+    {
+        "name": "Strawberry Smoothie",
+        "description": "Fresh strawberry smoothie blended with yogurt and milk.",
+        "price": 149,
+        "category": "Drinks",
+        "image": "https://images.unsplash.com/photo- Strawberry?w=600",
+        "rating": 4.6,
+        "time": "8 min",
+        "tag": "Healthy",
+    },
+    {
+        "name": "Paneer Tikka Wrap",
+        "description": "Grilled paneer cubes wrapped with spicy sauce and fresh veggies.",
+        "price": 199,
+        "category": "Wraps",
+        "image": "https://images.unsplash.com/photo-1626700051175-6818013e1d4f?w=600",
+        "rating": 4.7,
+        "time": "15 min",
+        "tag": "Popular",
+    },
+    {
+        "name": "Chicken Shawarma Wrap",
+        "description": "Tender chicken with garlic sauce and crunchy vegetables in a wrap.",
+        "price": 229,
+        "category": "Wraps",
+        "image": "https://images.unsplash.com/photo-1529006557810-274b9b2fc783?w=600",
+        "rating": 4.8,
+        "time": "18 min",
+        "tag": "Bestseller",
+    },
 ]
+
 
 with app.app_context():
     db.create_all()
 
-    if Product.query.count() == 0:
-        for item in sample_products:
+    added_count = 0
+    skipped_count = 0
+
+    for item in sample_products:
+        existing_product = Product.query.filter_by(name=item["name"]).first()
+
+        if existing_product is None:
             product = Product(**item)
             db.session.add(product)
+            added_count += 1
+        else:
+            skipped_count += 1
 
-        db.session.commit()
-        print("Six sample products added successfully!")
-    else:
-        print("Products already exist. No duplicate data added.")
+    db.session.commit()
+
+    print(f"{added_count} new products added successfully!")
+    print(f"{skipped_count} existing products skipped.")
+    print(f"Total products in database: {Product.query.count()}")
