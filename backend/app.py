@@ -76,6 +76,18 @@ def create_app():
     @app.route("/api/health")
     def health():
         return jsonify({"status": "ok", "message": "FoodieHub API is running"})
+    
+
+    @app.route("/api/routes")
+    def show_routes():
+    return jsonify([
+        {
+            "endpoint": rule.endpoint,
+            "path": rule.rule,
+            "methods": list(rule.methods)
+        }
+        for rule in app.url_map.iter_rules()
+    ])
 
     return app
 
