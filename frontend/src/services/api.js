@@ -1,7 +1,25 @@
 
 const API_BASE_URL = "https://foodiehub-backend-8l96.onrender.com/api";
 
+// ==========================================
+// COMMON API RESPONSE HANDLER
+// ==========================================
 
+const handleResponse = async (response, defaultErrorMessage) => {
+    let data = {};
+
+    try {
+        data = await response.json();
+    } catch {
+        data = {};
+    }
+
+    if (!response.ok) {
+        throw new Error(data.error || data.message || defaultErrorMessage);
+    }
+
+    return data;
+};
 
 // ==========================================
 // CUSTOMER PRODUCT APIs
@@ -9,44 +27,41 @@ const API_BASE_URL = "https://foodiehub-backend-8l96.onrender.com/api";
 
 export const getProducts = async () => {
     try {
-        const response = await fetch(`${API_BASE_URL}/products`);
+        const response = await fetch(`${API_BASE_URL}/products/`, {
+            method: "GET",
+            credentials: "include",
+        });
 
-        if (!response.ok) {
-            throw new Error("Failed to fetch products");
-        }
+        const data = await handleResponse(
+            response,
+            "Failed to fetch products"
+        );
 
-        const data = await response.json();
         return data.items || [];
-
     } catch (error) {
-        console.error("API Error:", error);
+        console.error("Get Products API Error:", error);
         throw error;
     }
 };
 
-
 // ==========================================
 // ADMIN PRODUCT APIs
-// All requests include the admin session cookie
 // ==========================================
 
-// Fetch all admin products
 export const getAdminProducts = async () => {
     const response = await fetch(`${API_BASE_URL}/admin/products`, {
+        method: "GET",
         credentials: "include",
     });
 
-    const data = await response.json();
-
-    if (!response.ok) {
-        throw new Error(data.error || "Failed to fetch products");
-    }
+    const data = await handleResponse(
+        response,
+        "Failed to fetch admin products"
+    );
 
     return data.items || [];
 };
 
-
-// Add a new product
 export const addAdminProduct = async (product) => {
     const response = await fetch(`${API_BASE_URL}/admin/products`, {
         method: "POST",
@@ -57,17 +72,9 @@ export const addAdminProduct = async (product) => {
         body: JSON.stringify(product),
     });
 
-    const data = await response.json();
-
-    if (!response.ok) {
-        throw new Error(data.error || "Failed to add product");
-    }
-
-    return data;
+    return handleResponse(response, "Failed to add product");
 };
 
-
-// Update an existing product
 export const updateAdminProduct = async (id, product) => {
     const response = await fetch(`${API_BASE_URL}/admin/products/${id}`, {
         method: "PUT",
@@ -78,38 +85,22 @@ export const updateAdminProduct = async (id, product) => {
         body: JSON.stringify(product),
     });
 
-    const data = await response.json();
-
-    if (!response.ok) {
-        throw new Error(data.error || "Failed to update product");
-    }
-
-    return data;
+    return handleResponse(response, "Failed to update product");
 };
 
-
-// Delete a product
 export const deleteAdminProduct = async (id) => {
     const response = await fetch(`${API_BASE_URL}/admin/products/${id}`, {
         method: "DELETE",
         credentials: "include",
     });
 
-    const data = await response.json();
-
-    if (!response.ok) {
-        throw new Error(data.error || "Failed to delete product");
-    }
-
-    return data;
+    return handleResponse(response, "Failed to delete product");
 };
-
 
 // ==========================================
 // CUSTOMER AUTHENTICATION APIs
 // ==========================================
 
-// Register customer
 export const registerUser = async (userData) => {
     const response = await fetch(`${API_BASE_URL}/auth/register`, {
         method: "POST",
@@ -120,17 +111,9 @@ export const registerUser = async (userData) => {
         body: JSON.stringify(userData),
     });
 
-    const data = await response.json();
-
-    if (!response.ok) {
-        throw new Error(data.error || "Registration failed");
-    }
-
-    return data;
+    return handleResponse(response, "Registration failed");
 };
 
-
-// Customer login
 export const loginUser = async (credentials) => {
     const response = await fetch(`${API_BASE_URL}/auth/login`, {
         method: "POST",
@@ -141,54 +124,40 @@ export const loginUser = async (credentials) => {
         body: JSON.stringify(credentials),
     });
 
-    const data = await response.json();
-
-    if (!response.ok) {
-        throw new Error(data.error || "Login failed");
-    }
-
-    return data;
+    return handleResponse(response, "Login failed");
 };
 
-
-// Get currently logged-in customer
 export const getCurrentUser = async () => {
     const response = await fetch(`${API_BASE_URL}/auth/me`, {
+        method: "GET",
         credentials: "include",
     });
-
-    const data = await response.json();
 
     if (!response.ok) {
         return null;
     }
 
-    return data.user;
+    const data = await handleResponse(
+        response,
+        "Unable to fetch current user"
+    );
+
+    return data.user || null;
 };
 
-
-// Customer logout
 export const logoutUser = async () => {
     const response = await fetch(`${API_BASE_URL}/auth/logout`, {
         method: "POST",
         credentials: "include",
     });
 
-    const data = await response.json();
-
-    if (!response.ok) {
-        throw new Error(data.error || "Logout failed");
-    }
-
-    return data;
+    return handleResponse(response, "Logout failed");
 };
-
 
 // ==========================================
 // ADMIN AUTHENTICATION APIs
 // ==========================================
 
-// Admin login
 export const adminLogin = async (credentials) => {
     const response = await fetch(`${API_BASE_URL}/auth/admin-login`, {
         method: "POST",
@@ -199,54 +168,40 @@ export const adminLogin = async (credentials) => {
         body: JSON.stringify(credentials),
     });
 
-    const data = await response.json();
-
-    if (!response.ok) {
-        throw new Error(data.error || "Admin login failed");
-    }
-
-    return data;
+    return handleResponse(response, "Admin login failed");
 };
 
-
-// Verify admin session
 export const getCurrentAdmin = async () => {
     const response = await fetch(`${API_BASE_URL}/auth/admin-me`, {
+        method: "GET",
         credentials: "include",
     });
-
-    const data = await response.json();
 
     if (!response.ok) {
         return null;
     }
 
-    return data.user;
+    const data = await handleResponse(
+        response,
+        "Unable to fetch current admin"
+    );
+
+    return data.user || null;
 };
 
-
-// Admin logout
 export const adminLogout = async () => {
     const response = await fetch(`${API_BASE_URL}/auth/admin-logout`, {
         method: "POST",
         credentials: "include",
     });
 
-    const data = await response.json();
-
-    if (!response.ok) {
-        throw new Error(data.error || "Admin logout failed");
-    }
-
-    return data;
+    return handleResponse(response, "Admin logout failed");
 };
-
 
 // ==========================================
 // CUSTOMER ORDER APIs
 // ==========================================
 
-// Create order
 export const createOrder = async (orderData) => {
     const response = await fetch(`${API_BASE_URL}/orders/`, {
         method: "POST",
@@ -257,69 +212,50 @@ export const createOrder = async (orderData) => {
         body: JSON.stringify(orderData),
     });
 
-    const data = await response.json();
-
-    if (!response.ok) {
-        throw new Error(data.error || "Unable to place order");
-    }
-
-    return data;
+    return handleResponse(response, "Unable to place order");
 };
 
-
-// Get order by ID
 export const getOrderById = async (id) => {
     const response = await fetch(`${API_BASE_URL}/orders/${id}`, {
+        method: "GET",
         credentials: "include",
     });
 
-    const data = await response.json();
-
-    if (!response.ok) {
-        throw new Error(data.error || "Unable to fetch order");
-    }
-
-    return data;
+    return handleResponse(response, "Unable to fetch order");
 };
 
-
-// Get logged-in customer's orders
 export const getMyOrders = async () => {
     const response = await fetch(`${API_BASE_URL}/orders/`, {
+        method: "GET",
         credentials: "include",
     });
 
-    const data = await response.json();
-
-    if (!response.ok) {
-        throw new Error(data.error || "Unable to fetch orders");
-    }
+    const data = await handleResponse(
+        response,
+        "Unable to fetch orders"
+    );
 
     return data.items || [];
 };
-
 
 // ==========================================
 // CUSTOMER PROFILE APIs
 // ==========================================
 
-// Get customer profile
 export const getProfile = async () => {
     const response = await fetch(`${API_BASE_URL}/auth/profile`, {
+        method: "GET",
         credentials: "include",
     });
 
-    const data = await response.json();
+    const data = await handleResponse(
+        response,
+        "Unable to load profile"
+    );
 
-    if (!response.ok) {
-        throw new Error(data.error || "Unable to load profile");
-    }
-
-    return data.user;
+    return data.user || null;
 };
 
-
-// Update customer profile
 export const updateProfile = async (profileData) => {
     const response = await fetch(`${API_BASE_URL}/auth/profile`, {
         method: "PUT",
@@ -330,17 +266,9 @@ export const updateProfile = async (profileData) => {
         body: JSON.stringify(profileData),
     });
 
-    const data = await response.json();
-
-    if (!response.ok) {
-        throw new Error(data.error || "Unable to update profile");
-    }
-
-    return data;
+    return handleResponse(response, "Unable to update profile");
 };
 
-
-// Change customer password
 export const changePassword = async (passwordData) => {
     const response = await fetch(`${API_BASE_URL}/auth/change-password`, {
         method: "POST",
@@ -351,15 +279,12 @@ export const changePassword = async (passwordData) => {
         body: JSON.stringify(passwordData),
     });
 
-    const data = await response.json();
-
-    if (!response.ok) {
-        throw new Error(data.error || "Unable to change password");
-    }
-
-    return data;
+    return handleResponse(response, "Unable to change password");
 };
 
+// ==========================================
+// CONTACT API
+// ==========================================
 
 export const submitContactMessage = async (messageData) => {
     const response = await fetch(`${API_BASE_URL}/contact`, {
@@ -367,14 +292,12 @@ export const submitContactMessage = async (messageData) => {
         headers: {
             "Content-Type": "application/json",
         },
+        credentials: "include",
         body: JSON.stringify(messageData),
     });
 
-    const data = await response.json();
-
-    if (!response.ok) {
-        throw new Error(data.error || "Unable to send your message.");
-    }
-
-    return data;
+    return handleResponse(
+        response,
+        "Unable to send your message"
+    );
 };
