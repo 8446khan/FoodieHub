@@ -2,6 +2,7 @@ from flask import Blueprint, jsonify, request, session
 from extensions import db
 from models import Order, OrderItem, Product, User
 from datetime import timezone
+import traceback
 
 orders_bp = Blueprint("orders", __name__)
 
@@ -74,12 +75,9 @@ def create_order():
         if not isinstance(item, dict):
             return jsonify({"error": "Invalid item format"}), 400
 
-        product_id = item.get("product_id", item.get("id"))
-        quantity = item.get("quantity")
-
         try:
-            product_id = int(product_id)
-            quantity = int(quantity)
+            product_id = int(item.get("product_id", item.get("id")))
+            quantity = int(item.get("quantity"))
         except (TypeError, ValueError):
             return jsonify({"error": "Invalid product ID or quantity"}), 400
 
@@ -97,7 +95,12 @@ def create_order():
         subtotal = product.price * quantity
         total_amount += subtotal
 
-        order_items.append({"product": product, "quantity": quantity})
+        order_items.append(
+            {
+                "product": product,
+                "quantity": quantity,
+            }
+        )
 
     new_order = Order(
         user_id=user.id,
@@ -140,6 +143,8 @@ def create_order():
 
     except Exception:
         db.session.rollback()
+        traceback.print_exc()
+
         return jsonify({"error": "Unable to place order"}), 500
 
 
