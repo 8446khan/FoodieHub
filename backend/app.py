@@ -69,25 +69,29 @@ def create_app():
     app.register_blueprint(admin_bp, url_prefix="/api/admin")
     app.register_blueprint(contact_bp, url_prefix="/api/contact")
 
+    # Home route
     @app.route("/")
     def home():
         return jsonify({"message": "FoodieHub API is running", "status": "success"})
 
+    # Health route
     @app.route("/api/health")
     def health():
         return jsonify({"status": "ok", "message": "FoodieHub API is running"})
-    
 
+    # Temporary diagnostic route
     @app.route("/api/routes")
     def show_routes():
-    return jsonify([
-        {
-            "endpoint": rule.endpoint,
-            "path": rule.rule,
-            "methods": list(rule.methods)
-        }
-        for rule in app.url_map.iter_rules()
-    ])
+        return jsonify(
+            [
+                {
+                    "endpoint": rule.endpoint,
+                    "path": rule.rule,
+                    "methods": list(rule.methods),
+                }
+                for rule in app.url_map.iter_rules()
+            ]
+        )
 
     return app
 
