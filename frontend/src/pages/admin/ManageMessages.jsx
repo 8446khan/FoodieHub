@@ -14,7 +14,7 @@ import {
     Inbox,
 } from "lucide-react";
 
-const API_URL = "http://localhost:5000/api/admin/messages";
+const API_URL = "https://foodiehub-backend-8l96.onrender.com/api/admin/messages";
 
 export default function ManageMessages() {
     const [messages, setMessages] = useState([]);
